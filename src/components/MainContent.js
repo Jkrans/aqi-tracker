@@ -21,8 +21,13 @@ const MainContent = () => {
             if (!response.ok) {
                 throw new Error('Please try your request again');
             }
-            const aqiValue = await response.json();
-            setAqi(aqiValue);
+            const data = await response.json();
+            // If the response is the test object, handle it appropriately
+            if (data.test) {
+                console.log(data.test); // Or display it in some way
+            } else {
+                setAqi(data.currentConditions.aqius);
+            }
         } catch (err) {
             setError(err.message);
         }
