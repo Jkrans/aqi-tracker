@@ -17,6 +17,7 @@ const MainContent = () => {
         try {
             const baseUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
             const response = await fetch(`${baseUrl}/aqi?city=${encodeURIComponent(city)}`);
+
             if (!response.ok) {
                 throw new Error('Please try your request again');
             }
