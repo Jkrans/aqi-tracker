@@ -12,24 +12,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Allow CORS (Cross-Origin Resource Sharing) for your frontend
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     next();
-// });
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+});
 
-// CORS options
-const corsOptions = {
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    optionsSuccessStatus: 204
-};
-
-// Enable CORS with options
-app.use(cors(corsOptions));
-
-// Handle pre-flight requests for all routes
-app.options('*', cors(corsOptions));
 
 app.get('/aqi', async (req, res) => {
     // Get city from the query string
