@@ -15,7 +15,8 @@ const MainContent = () => {
         setAqi(null);
 
         try {
-            const response = await fetch(`http://localhost:3001/aqi?city=${encodeURIComponent(city)}`);
+            const baseUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
+            const response = await fetch(`${baseUrl}/aqi?city=${encodeURIComponent(city)}`);
             if (!response.ok) {
                 throw new Error('Please try your request again');
             }
@@ -25,6 +26,7 @@ const MainContent = () => {
             setError(err.message);
         }
     };
+
 
 
 
