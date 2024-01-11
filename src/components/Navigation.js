@@ -1,3 +1,5 @@
+import React from 'react';
+import { LoginButton, LogoutButton } from './Authentication';
 import logo from '../images/logo.png';
 
 const Navigation = () => {
@@ -8,10 +10,12 @@ const Navigation = () => {
                 <h1>AQI Tracker</h1>
             </div>
             <div className='nav-login'>
-                <button>Log In</button>
+                <LoginButton />
+                <LogoutButton />
             </div>
         </nav>
     )
 }
 
-export default Navigation
+export default Navigation;
+

@@ -24,15 +24,11 @@
   width: 30rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-/* Media query for phone screens */
-@media (max-width: 768px) {
-  .main-container {
-    width: 80%;
-  }
-}
+
 
 .main-container input {
   box-sizing: border-box;
@@ -45,15 +41,25 @@
 }
 
 .main-container button {
-  padding: .2rem 1rem;
+  padding: .8rem 1.2rem;
+  display: flex;
   margin-top: 2rem;
+  align-items: center;
+  justify-content: center;
   font-size: 1.5rem;
   width: 100%;
   height: 2rem;
   border: none;
+  color: rgb(0, 0, 0);
   border-radius: 5px;
   background-color: rgb(104, 230, 183);
 }
+
+.main-container h2 {
+  font-size: 1.5rem;
+}
+
+
 
 .navigation {
   display: flex;
@@ -80,8 +86,36 @@
 .nav-login button {
   width: 8rem;
   height: 3rem;
+  margin-left: 1rem;
   background-color: rgb(104, 230, 183);
   font-size: 1.5rem;
   border: none;
   border-radius: 5px;
+}
+
+/* Media query for phone screens */
+@media (max-width: 768px) {
+  .main-container {
+    width: 80%;
+  }
+
+  .main-container h2 {
+    font-size: 1rem;
+  }
+
+  .nav-login {
+    padding: 0;
+    padding-right: 0.5rem;
+  }
+
+  .nav-login button {
+    width: 4rem;
+    height: 2.5rem;
+    margin-left: .5rem;
+    background-color: rgb(104, 230, 183);
+    font-size: 0.8rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+  }
 }

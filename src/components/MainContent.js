@@ -50,6 +50,9 @@ const MainContent = () => {
                 <button onClick={handleSubmit}>Submit</button>
                 {aqi && <p>AQI: {aqi}</p>}
                 {error && <p>Error: {error}</p>}
+                <div>
+                    <h2>Log in for personalized text alerts about the air quality in your area.</h2>
+                </div>
             </div>
 
 
