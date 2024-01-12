@@ -5,7 +5,7 @@ const MainContent = () => {
     const [city, setCity] = useState('');
     const [aqi, setAqi] = useState(null);
     const [error, setError] = useState(null);
-    const { user } = useAuth0();
+    const { user, isAuthenticated } = useAuth0();
 
     // test test
     const handleInputChange = (e) => {
@@ -39,11 +39,14 @@ const MainContent = () => {
         e.preventDefault();
         fetchAQI();
     };
+    if (isAuthenticated) {
+        return (
 
-    return (
+            <h1>hello, {user.name}</h1>
+        )
+    } else {
         <header className="App-header">
             <div className="main-container">
-                <h1>hello, {user.name}</h1>
                 <h1>Get AQI</h1>
 
                 <input
@@ -62,7 +65,7 @@ const MainContent = () => {
 
 
         </header>
-    )
+    }
 }
 
 export default MainContent
