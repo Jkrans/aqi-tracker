@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { withAuthenticationRequired } from '@auth0/auth0-react';
+// import { withAuthenticationRequired } from '@auth0/auth0-react';
 import Navigation from "./components/Navigation"
 import MainContent from "./components/MainContent"
 import UserProfile from "./components/UserProfile";
 import './App.css';
 
-const ProtectedProfile = withAuthenticationRequired(UserProfile, {
-  onRedirecting: () => <div>Loading...</div>, // Optional: display while redirecting to login
-  // Other options can be added here
-});
+// const ProtectedProfile = withAuthenticationRequired(UserProfile, {
+//   onRedirecting: () => <div>Loading...</div>, // Optional: display while redirecting to login
+//   // Other options can be added here
+// });
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainContent />} />
-          <Route path="/profile" element={<ProtectedProfile />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </Router>
     </div>
