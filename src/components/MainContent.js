@@ -5,7 +5,7 @@ const MainContent = () => {
     const [city, setCity] = useState('');
     const [aqi, setAqi] = useState(null);
     const [error, setError] = useState(null);
-    const { user, isAuthenticated } = useAuth0();
+    const { user } = useAuth0();
 
 
     const handleInputChange = (e) => {
