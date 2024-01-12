@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useAuth0 } from '@auth0/auth0-react';
 
 const MainContent = () => {
@@ -7,12 +7,12 @@ const MainContent = () => {
     const [error, setError] = useState(null);
     const { user, isAuthenticated } = useAuth0();
 
-    // test test
+
     const handleInputChange = (e) => {
         setCity(e.target.value);
     };
 
-
+    console.log(isAuthenticated);
 
     const fetchAQI = async () => {
         setError(null);
@@ -41,7 +41,6 @@ const MainContent = () => {
     };
     if (isAuthenticated) {
         return (
-
             <h1>hello, {user.name}</h1>
         )
     } else {
