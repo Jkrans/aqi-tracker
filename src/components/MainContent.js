@@ -5,14 +5,14 @@ const MainContent = () => {
     const [city, setCity] = useState('');
     const [aqi, setAqi] = useState(null);
     const [error, setError] = useState(null);
-    const { user, isAuthenticated } = useAuth0();
+    const { user } = useAuth0();
 
     // test test
     const handleInputChange = (e) => {
         setCity(e.target.value);
     };
 
-    if (isAuthenticated) { console.log("cool beans") }
+
 
     const fetchAQI = async () => {
         setError(null);
