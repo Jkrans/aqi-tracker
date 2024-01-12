@@ -15,7 +15,7 @@ root.render(
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      redirectUri="https://aqi-tracker.netlify.app/profile"
+      redirectUri="https://aqi-tracker.netlify.app/"
     >
       <App />
     </Auth0Provider>

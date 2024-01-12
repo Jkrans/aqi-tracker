@@ -1,9 +1,11 @@
 import { useState } from "react"
+import { useAuth0 } from '@auth0/auth0-react';
 
 const MainContent = () => {
     const [city, setCity] = useState('');
     const [aqi, setAqi] = useState(null);
     const [error, setError] = useState(null);
+    const { user, isAuthenticated, isLoading } = useAuth0();
 
     // test test
     const handleInputChange = (e) => {
@@ -39,6 +41,7 @@ const MainContent = () => {
     return (
         <header className="App-header">
             <div className="main-container">
+                <h1>hello, {user.name}</h1>
                 <h1>Get AQI</h1>
 
                 <input
