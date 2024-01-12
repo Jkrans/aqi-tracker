@@ -20,7 +20,6 @@ function App() {
           <Route path="/profile" element={<ProtectedProfile />} />
         </Routes>
       </Router>
-      <MainContent />
     </div>
   );
 }

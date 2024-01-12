@@ -12,7 +12,7 @@ const MainContent = () => {
         setCity(e.target.value);
     };
 
-    console.log(isAuthenticated);
+    // console.log(isAuthenticated);
 
     const fetchAQI = async () => {
         setError(null);
@@ -39,12 +39,12 @@ const MainContent = () => {
         e.preventDefault();
         fetchAQI();
     };
-    if (isAuthenticated) {
+    if (1 > 5) {
         return (
             <h1>hello, {user.name}</h1>
         )
     } else {
-        <header className="App-header">
+        return (<header className="App-header">
             <div className="main-container">
                 <h1>Get AQI</h1>
 
@@ -63,7 +63,7 @@ const MainContent = () => {
             </div>
 
 
-        </header>
+        </header>)
     }
 }
 
