@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react"
-import { useAuth0 } from "@auth0/auth0-react";
+import { useState } from "react"
+// import { useAuth0 } from "@auth0/auth0-react";
 
 const MainContent = () => {
     const [city, setCity] = useState('');
     const [aqi, setAqi] = useState(null);
     const [error, setError] = useState(null);
-    const { user, isAuthenticated } = useAuth0();
+    // const { user, isAuthenticated } = useAuth0();
 
 
     const handleInputChange = (e) => {
@@ -48,7 +48,7 @@ const MainContent = () => {
             {aqi && <p>AQI: {aqi}</p>}
             {error && <p>Error: {error}</p>}
             <div>
-                {!isAuthenticated && <h2>Log in for personalized text alerts about the air quality in your area.</h2>}
+                <h2>Log in for personalized text alerts about the air quality in your area.</h2>
             </div>
         </div>
 
