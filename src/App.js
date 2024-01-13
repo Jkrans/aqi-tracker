@@ -1,4 +1,4 @@
-import { BrowserRouter as Route, Routes } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 // import { withAuthenticationRequired } from '@auth0/auth0-react';
 import Navigation from "./components/Navigation"
 import MainContent from "./components/MainContent"

@@ -22,7 +22,6 @@ root.render(
     >
       <Router>
         <App />
-
       </Router>
     </Auth0Provider>
   </React.StrictMode>
