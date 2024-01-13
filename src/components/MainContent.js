@@ -1,16 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useAuth0 } from "@auth0/auth0-react";
 
 const MainContent = () => {
     const [city, setCity] = useState('');
     const [aqi, setAqi] = useState(null);
     const [error, setError] = useState(null);
+    const { user, isAuthenticated } = useAuth0();
 
 
     const handleInputChange = (e) => {
         setCity(e.target.value);
     };
-
-    // console.log(isAuthenticated);
 
     const fetchAQI = async () => {
         setError(null);
@@ -48,7 +48,7 @@ const MainContent = () => {
             {aqi && <p>AQI: {aqi}</p>}
             {error && <p>Error: {error}</p>}
             <div>
-                <h2>Log in for personalized text alerts about the air quality in your area.</h2>
+                {!isAuthenticated && <h2>Log in for personalized text alerts about the air quality in your area.</h2>}
             </div>
         </div>
 
