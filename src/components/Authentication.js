@@ -10,5 +10,9 @@ export const LoginButton = () => {
 
 export const LogoutButton = () => {
     const { logout } = useAuth0();
-    return <button onClick={() => logout({ returnTo: window.location.origin })}>Log Out</button>;
+    const handleLogout = () => {
+        console.log("Current origin:", window.location.origin); // For debugging
+        logout({ returnTo: window.location.origin });
+    };
+    return <button onClick={handleLogout}>Log Out</button>;
 };
