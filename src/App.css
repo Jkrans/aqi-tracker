@@ -40,7 +40,7 @@
   border-radius: 2px;
 }
 
-.main-container button {
+.main-container .button-style {
   padding: .8rem 1.2rem;
   display: flex;
   margin-top: 2rem;
@@ -53,6 +53,18 @@
   color: rgb(0, 0, 0);
   border-radius: 5px;
   background-color: rgb(104, 230, 183);
+  cursor: pointer;
+}
+
+.main-container .button-link {
+  width: 100%;
+
+  text-decoration: none;
+  /* Removes underline from link */
+  color: inherit;
+  /* Inherits font color from parent */
+  display: block;
+  /* Makes the link take full width */
 }
 
 .main-container h2 {

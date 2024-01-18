@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from 'react-router-dom';
+
 
 const MainContent = () => {
     const [city, setCity] = useState('');
     const [aqi, setAqi] = useState(null);
     const [error, setError] = useState(null);
     const { isAuthenticated } = useAuth0();
+    const navigate = useNavigate();
 
 
     const handleInputChange = (e) => {
@@ -34,26 +37,34 @@ const MainContent = () => {
         e.preventDefault();
         fetchAQI();
     };
-    return (<header className="App-header">
-        <div className="main-container">
-            <h1>Get AQI</h1>
 
-            <input
-                placeholder="Enter Your Location..."
-                value={city}
-                onChange={handleInputChange}
-            />
+    const linkToProfile = () => {
+        navigate('/profile');
+    };
+    return (
+        <header className="App-header">
+            <div className="main-container">
+                <h1>Get AQI</h1>
 
-            <button onClick={handleSubmit}>Submit</button>
-            {aqi && <p>AQI: {aqi}</p>}
-            {error && <p>Error: {error}</p>}
-            <div>
-                {!isAuthenticated && <h2>Log in for personalized text alerts about the air quality in your area.</h2>}
+                <input
+                    placeholder="Enter Your Location..."
+                    value={city}
+                    onChange={handleInputChange}
+                />
+
+                <button onClick={handleSubmit} className="button-style">Submit</button>
+                {isAuthenticated && <button onClick={linkToProfile} className="button-style">Profile</button>}
+
+
+                {aqi && <p>AQI: {aqi}</p>}
+                {error && <p>Error: {error}</p>}
+                <div>
+                    {!isAuthenticated && <h2>Log in for personalized text alerts about the air quality in your area.</h2>}
+                </div>
             </div>
-        </div>
 
 
-    </header>)
+        </header>)
 
 }
 

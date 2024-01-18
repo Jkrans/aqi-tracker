@@ -10,10 +10,22 @@ const UserProfile = () => {
 
     return (
         isAuthenticated && (
-            <div>
-                <img src={user.picture} alt={user.name} />
-                <h2>{user.name}</h2>
-                <p>{user.email}</p>
+            <div className="user-profile">
+                <div className="user-info">
+                    {/* <img src={user.picture} alt={user.name} className="user-picture" /> */}
+                    <h2 className="user-name">{user.name}</h2>
+                    {/* <p className="user-email">{user.email}</p> */}
+                </div>
+                <div className="aqi-alerts">
+                    <h3>Your Alerts</h3>
+                    <p>Nothing here yet...</p>
+                </div>
+                <div className="aqi-alerts">
+                    <h3>AQI Alerts</h3>
+                    <input type="text" placeholder="Alert Name" className="alert-name-input" />
+                    <input type="number" placeholder="50 - 300" min="50" max="300" className="alert-number-input" />
+                    <button className="add-new-button">Add New</button>
+                </div>
             </div>
         )
     );

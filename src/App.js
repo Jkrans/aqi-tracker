@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation"
 import MainContent from "./components/MainContent"
 import UserProfile from "./components/UserProfile";
 import './App.css';
+import './profile.css';
 
 // const ProtectedProfile = withAuthenticationRequired(UserProfile, {
 //   onRedirecting: () => <div>Loading...</div>, // Optional: display while redirecting to login
