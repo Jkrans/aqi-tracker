@@ -1,8 +1,10 @@
 // server.js
 require('dotenv').config();
 const express = require('express');
+const app = express();
 const cors = require('cors');
 const db = require('./database')
+const port = process.env.PORT || 3001;
 
 let fetch;
 import('node-fetch').then(({ default: fetchModule }) => {
@@ -10,15 +12,24 @@ import('node-fetch').then(({ default: fetchModule }) => {
     // Rest of your server code that uses fetch
 });
 
-const app = express();
-const port = process.env.PORT || 3001;
 
-// Allow CORS (Cross-Origin Resource Sharing) for your frontend
+// CORS options
 const corsOptions = {
-    origin: '*', // Your frontend URL
-    optionsSuccessStatus: 200
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204
 };
+
+// Enable CORS with options
 app.use(cors(corsOptions));
+
+// Handle pre-flight requests for all routes
+app.options('*', cors(corsOptions));
+
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running on http://0.0.0.0:${port}`);
+});
 
 async function getAllFromTestTable() {
     try {
@@ -70,6 +81,6 @@ app.get('/aqi', async (req, res) => {
 });
 
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+// app.listen(port, () => {
+//     console.log(`Server running on port ${port}`);
+// });
