@@ -8,7 +8,7 @@ const UserProfile = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('https://aqi-tracker-production.up.railway.app/Test-Table'); // Adjust if you have a specific base URL
+                const response = await fetch('https://aqi-tracker-production.up.railway.app/api/Test-Table'); // Adjust if you have a specific base URL
                 if (!response.ok) throw new Error('Data fetching failed');
                 const data = await response.json();
                 setTestData(data);

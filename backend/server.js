@@ -1,6 +1,7 @@
 // server.js
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const db = require('./database')
 
 let fetch;
@@ -13,10 +14,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 // Allow CORS (Cross-Origin Resource Sharing) for your frontend
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-});
+const corsOptions = {
+    origin: '*', // Your frontend URL
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 
 async function getAllFromTestTable() {
     try {
@@ -29,7 +31,7 @@ async function getAllFromTestTable() {
     }
 }
 
-app.get('/test-table', async (req, res) => {
+app.get('/api/Test-Table', async (req, res) => {
     try {
         const data = await getAllFromTestTable();
         res.json(data);
