@@ -1,8 +1,23 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const UserProfile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
+    const [testData, setTestData] = useState([]);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch('https://aqi-tracker-production.up.railway.app/Test-Table'); // Adjust if you have a specific base URL
+                if (!response.ok) throw new Error('Data fetching failed');
+                const data = await response.json();
+                setTestData(data);
+            } catch (err) {
+                console.error(err.message);
+            }
+        }
+        fetchData();
+    }, []);
 
     if (isLoading) {
         return <div>Loading ...</div>;
@@ -25,6 +40,11 @@ const UserProfile = () => {
                     <input type="text" placeholder="Alert Name" className="alert-name-input" />
                     <input type="number" placeholder="50 - 300" min="50" max="300" className="alert-number-input" />
                     <button className="add-new-button">Add New</button>
+                </div>
+                <div>
+                    {testData.map((item, index) => (
+                        <div key={index}><p>{item}</p></div>
+                    ))}
                 </div>
             </div>
         )
