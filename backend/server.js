@@ -41,14 +41,19 @@ app.listen(port, '0.0.0.0', () => {
 //     }
 // }
 
-app.get('/api/testtable', async (req, res) => {
+app.get('/api/hello', (req, res) => {
+    res.json({ message: 'Hello from server!' });
+});
+
+
+app.get('/api/test', async (req, res) => {
     try {
-        const data = await db.query('SELECT * FROM testtable');
+        const data = await db.query("SELECT * FROM test");
         res.json(data.rows);
     } catch (err) {
-        console.error('Error in /api/testtable route:', err);
-        res.status(500).json({ error: 'Error retrieving data', details: err.message });
-
+        // console.error('Error in /api/test route:', err);
+        // res.status(500).json({ error: 'Error retrieving data', details: err.message });
+        console.error(err.message);
     }
 });
 
