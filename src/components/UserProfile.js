@@ -9,11 +9,11 @@ const UserProfile = () => {
         async function fetchData() {
             try {
                 const response = await fetch('https://aqi-tracker-production.up.railway.app/api/testtable'); // Adjust if you have a specific base URL
-                if (!response.ok) throw new Error('Data fetching failed');
+                if (!response.ok) throw new Error('Data fetching failed UGH');
                 const data = await response.json();
                 setTestData(data);
             } catch (err) {
-                console.error(err.message);
+                console.error("UGH: ", err.message);
             }
         }
         fetchData();
