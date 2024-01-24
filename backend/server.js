@@ -36,7 +36,7 @@ async function getAllFromTestTable() {
         const result = await db.query('SELECT * FROM "testtable"');
         return result.rows;
     } catch (err) {
-        console.error('Error fetching data from testtable:', err);
+        console.error('Error fetching data from Test-Table:', err);
         throw err;
     }
 }
@@ -46,7 +46,9 @@ app.get('/api/testtable', async (req, res) => {
         const data = await getAllFromTestTable();
         res.json(data);
     } catch (err) {
-        res.status(500).send('Error retrieving data');
+        console.error('Error in /api/testtable route:', err);
+        res.status(500).json({ error: 'Error retrieving data', details: err.message });
+
     }
 });
 
