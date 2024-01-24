@@ -42,7 +42,7 @@ const UserProfile = () => {
                     <button className="add-new-button">Add New</button>
                 </div>
                 <div>
-                    <p>Test</p>
+                    <p>Testing...</p>
                     {testData.map((item, index) => (
                         <div key={index}><p>{item}</p></div>
                     ))}

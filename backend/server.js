@@ -31,20 +31,20 @@ app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on http://0.0.0.0:${port}`);
 });
 
-async function getAllFromTestTable() {
-    try {
-        const result = await db.query('SELECT * FROM "testtable"');
-        return result.rows;
-    } catch (err) {
-        console.error('Error fetching data from Test-Table:', err);
-        throw err;
-    }
-}
+// async function getAllFromTestTable() {
+//     try {
+//         const result = await db.query('SELECT * FROM testtable');
+//         return result.rows;
+//     } catch (err) {
+//         console.error('Error fetching data from Test-Table:', err);
+//         throw err;
+//     }
+// }
 
 app.get('/api/testtable', async (req, res) => {
     try {
-        const data = await getAllFromTestTable();
-        res.json(data);
+        const data = await db.query('SELECT * FROM testtable');
+        res.json(data.rows);
     } catch (err) {
         console.error('Error in /api/testtable route:', err);
         res.status(500).json({ error: 'Error retrieving data', details: err.message });
