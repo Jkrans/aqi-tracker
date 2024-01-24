@@ -44,7 +44,7 @@ const UserProfile = () => {
                 <div>
                     <p>Testing...</p>
                     {testData.map((item, index) => (
-                        <div key={index}><p>{item}</p></div>
+                        <div key={index}><p>{item.name}</p></div>
                     ))}
                 </div>
             </div>
