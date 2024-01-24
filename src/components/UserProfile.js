@@ -8,7 +8,7 @@ const UserProfile = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('https://aqi-tracker-production.up.railway.app/api/Test-Table'); // Adjust if you have a specific base URL
+                const response = await fetch('https://aqi-tracker-production.up.railway.app/api/testtable'); // Adjust if you have a specific base URL
                 if (!response.ok) throw new Error('Data fetching failed');
                 const data = await response.json();
                 setTestData(data);
@@ -42,6 +42,7 @@ const UserProfile = () => {
                     <button className="add-new-button">Add New</button>
                 </div>
                 <div>
+                    <p>Test</p>
                     {testData.map((item, index) => (
                         <div key={index}><p>{item}</p></div>
                     ))}
