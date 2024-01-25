@@ -5,15 +5,38 @@ const UserProfile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
     const [testData, setTestData] = useState([]);
 
+    const sendEmailToBackend = async (email) => {
+        try {
+            const response = await fetch('https://aqi-tracker-production.up.railway.app/api/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+            if (!response.ok) throw new Error('Failed to send email');
+            const data = await response.json();
+            console.log(data); // Handle the response data as needed
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            sendEmailToBackend(user.email);
+        }
+    }, [isAuthenticated, user]);
+
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('https://aqi-tracker-production.up.railway.app/api/test'); // Adjust if you have a specific base URL
-                if (!response.ok) throw new Error('Data fetching failed UGH');
+                const response = await fetch('https://aqi-tracker-production.up.railway.app/api/test');
+                if (!response.ok) throw new Error('Failed to fetch. Try harder.');
                 const data = await response.json();
                 setTestData(data);
             } catch (err) {
-                console.error("UGH: ", err.message);
+                console.error(err.message);
             }
         }
         fetchData();
@@ -28,7 +51,7 @@ const UserProfile = () => {
             <div className="user-profile">
                 <div className="user-info">
                     {/* <img src={user.picture} alt={user.name} className="user-picture" /> */}
-                    <h2 className="user-name">{user.name}</h2>
+                    <h2 className="user-name">{user.email}</h2>
                     {/* <p className="user-email">{user.email}</p> */}
                 </div>
                 <div className="aqi-alerts">

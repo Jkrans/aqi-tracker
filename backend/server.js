@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors');
 const db = require('./database')
 const port = process.env.PORT || 3001;
+app.use(express.json());
 
 let fetch;
 import('node-fetch').then(({ default: fetchModule }) => {
@@ -31,18 +32,32 @@ app.listen(port, '0.0.0.0', () => {
     console.log(`Server running on http://0.0.0.0:${port}`);
 });
 
-// async function getAllFromTestTable() {
-//     try {
-//         const result = await db.query('SELECT * FROM testtable');
-//         return result.rows;
-//     } catch (err) {
-//         console.error('Error fetching data from Test-Table:', err);
-//         throw err;
-//     }
-// }
 
 app.get('/api/hello', (req, res) => {
     res.json({ message: 'Hello from server!' });
+});
+
+// Check if user exists
+const checkIfUserExists = async (email) => {
+    const result = await db.query('SELECT * FROM UserAlertPreferences WHERE email = $1', [email]);
+    return result.rowCount > 0;
+};
+
+app.post('/api/user', async (req, res) => {
+    const { email } = req.body;
+    try {
+        // Check if user exists and handle accordingly
+        const userExists = await checkIfUserExists(email);
+        if (!userExists) {
+            console.log("No user exists for email " + email)
+        }
+        console.log("User exists for email " + email)
+        // Return appropriate response
+        res.json({ message: 'User checked/created', userExists });
+    } catch (err) {
+        console.error('Error in /api/user route:', err);
+        res.status(500).json({ error: 'Error handling user data', details: err.message });
+    }
 });
 
 
@@ -51,8 +66,6 @@ app.get('/api/test', async (req, res) => {
         const data = await db.query("SELECT * FROM test");
         res.json(data.rows);
     } catch (err) {
-        // console.error('Error in /api/test route:', err);
-        // res.status(500).json({ error: 'Error retrieving data', details: err.message });
         console.error(err.message);
     }
 });
