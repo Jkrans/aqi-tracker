@@ -43,15 +43,31 @@ const checkIfUserExists = async (email) => {
     return result.rowCount > 0;
 };
 
+
+const insertNewUser = async (email) => {
+    const queryText = `
+        INSERT INTO UserAlertPreferences (email)
+        VALUES ($1)
+        RETURNING *;`;
+
+    try {
+        const result = await db.query(queryText, [email, userName, phoneNumber, aqiThreshold]);
+        return result.rows[0]; // Assuming you want to return the newly created user
+    } catch (err) {
+        console.error('Error inserting new user:', err);
+        throw err;
+    }
+}
+
 app.post('/api/user', async (req, res) => {
     const { email } = req.body;
     try {
         // Check if user exists and handle accordingly
         const userExists = await checkIfUserExists(email);
         if (!userExists) {
-            console.log("No user exists for email " + email)
+            const newUser = await insertNewUser(email);
+            console.log("New user created:", newUser);
         }
-        console.log("User exists for email " + email)
         // Return appropriate response
         res.json({ message: 'User checked/created', userExists });
     } catch (err) {
