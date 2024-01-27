@@ -44,20 +44,20 @@ const checkIfUserExists = async (email) => {
 };
 
 
-// const insertNewUser = async (email) => {
-//     const queryText = `
-//         INSERT INTO UserAlertPreferences (email)
-//         VALUES ($1)
-//         RETURNING *;`;
+const insertNewUser = async (email) => {
+    const queryText = `
+        INSERT INTO UserAlertPreferences (email)
+        VALUES ($1)
+        RETURNING *;`;
 
-//     try {
-//         const result = await db.query(queryText, [email, userName, phoneNumber, aqiThreshold]);
-//         return result.rows[0]; // Assuming you want to return the newly created user
-//     } catch (err) {
-//         console.error('Error inserting new user:', err);
-//         throw err;
-//     }
-// }
+    try {
+        const result = await db.query(queryText, [email]);
+        return result.rows[0]; // Assuming you want to return the newly created user
+    } catch (err) {
+        console.error('Error inserting new user:', err);
+        throw err;
+    }
+}
 
 app.post('/api/user', async (req, res) => {
     const { email } = req.body;
@@ -65,8 +65,8 @@ app.post('/api/user', async (req, res) => {
         // Check if user exists and handle accordingly
         const userExists = await checkIfUserExists(email);
         if (!userExists) {
-            // const newUser = await insertNewUser(email);
-            // console.log("New user created:", newUser);
+            const newUser = await insertNewUser(email);
+            console.log("New user created:", newUser);
         }
         // Return appropriate response
         res.json({ message: 'User checked/created', userExists });
