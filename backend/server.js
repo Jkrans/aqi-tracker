@@ -68,6 +68,7 @@ app.post('/api/user', async (req, res) => {
             const newUser = await insertNewUser(email);
             console.log("New user created:", newUser);
         }
+        else { console.log("User already exists.") }
         // Return appropriate response
         res.json({ message: 'User checked/created', userExists });
     } catch (err) {
